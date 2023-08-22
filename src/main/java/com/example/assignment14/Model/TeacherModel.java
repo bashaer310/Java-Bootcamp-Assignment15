@@ -11,6 +11,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Set;
+
 @Setter
 @Getter
 @AllArgsConstructor
@@ -40,7 +42,12 @@ public class TeacherModel {
     @Column(columnDefinition = "int UNSIGNED not null")
     private Integer salary;
 
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "addressModel")
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "teacherModel")
     @PrimaryKeyJoinColumn
     private AddressModel addressModel;
+
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy ="teacherModel")
+    private Set<CourseModel> courseModel;
+
 }
